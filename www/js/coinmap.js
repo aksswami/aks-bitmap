@@ -23,50 +23,38 @@ function coinmap(position) {
         });
         
     });
+        
+    // Define the circle
+    var circle = new google.maps.Circle({
+        map: map,
+        clickable: false,
+        // metres
+        radius: 100000,
+        fillColor: '#fff',
+        fillOpacity: .6,
+        strokeColor: '#313131',
+        strokeOpacity: .4,
+        strokeWeight: .8
+    });
+    // Attach circle to marker
+    circle.bindTo('center', my_marker, 'position');
+    // Get the bounds
+    var bounds = circle.getBounds();
+    for (var i=0; i < markers.length;i++) {
+        if (bounds.contains( markers[i].getPosition())){
+            markers[i].setMap(map);
+        }
+        else{
+            markers[i].setmap(null);
+        }
+    }
    
     
     //var markerCluster = new MarkerClusterer(map, markers);
-    //alert("hello");
-/*var markers = new L.MarkerClusterGroup({showCoverageOnHover: false, maxClusterRadius: 32});*/
-
-    var geocoder= new google.maps.Geocoder();
-    var radius = 8000000;//parseInt(document.getElementById('radius').value, 10)*1000;
-    geocoder.geocode(  {'latLng': address}, function(results, status) {
-    if (status == google.maps.GeocoderStatus.OK) {
-     // map.setCenter(results[0].geometry.location);
-     /* var marker = new google.maps.Marker({
-        map: map,
-        position: results[0].geometry.location
-      });*/
-        var circle = null;
-        
-      if (circle) circle.setMap(null);
-      circle = new google.maps.Circle({center: new google.maps.LatLng(25.0411352, 121.6149205),
-                                     radius: radius,
-                                     fillOpacity: 0.35,
-                                     fillColor: "#FF0000",
-                                     map: map});
-        alert("hello");
-      var bounds = new google.maps.LatLngBounds();
-      for (var i=0; i<markers.length;i++) {
-        if (google.maps.geometry.spherical.computeDistanceBetween(markers[i].getPosition(),my_marker.getPosition()) < radius) {
-          bounds.extend(markers[i].getPosition())
-          markers[i].setMap(map);
-        } else {
-          markers[i].setMap(null);
-        }
-      }
-      map.fitBounds(bounds);
-
-    } else {
-      alert('Geocode was not successful for the following reason: ' + status);
-    }
-  });
+    
 }
 
-function codeAddress(address, gmarkers, my_marker) {
 
-}
 function onError(error) {
     alert('code: '    + error.code    + '\n' +
           'message: ' + error.message + '\n');
