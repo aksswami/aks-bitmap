@@ -20,7 +20,7 @@ function coinmap(position) {
     $.getJSON("http://overpass.osm.rambler.ru/cgi/interpreter?data=[out:json];(node[%22payment:bitcoin%22=yes];way[%22payment:bitcoin%22=yes];%3E;);out;", function (data) {
 
         $.each(data.elements, function (key, value) {
-            console.log(key, value);
+            
             var latLng = new google.maps.LatLng(value.lat, value.lon);
             var marker = new google.maps.Marker({
                 'position': latLng
