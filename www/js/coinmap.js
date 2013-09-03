@@ -44,11 +44,11 @@ function coinmap(position) {
         circle.bindTo('center', my_marker, 'position');
         // Get the bounds
         var bounds = circle.getBounds();
-        alert("Sdfsf");
+        //alert("Sdfsf");
         for (var i = 0; i < markers.length; i++) {
-            alert("ancd");
+            //alert("ancd");
             if (bounds.contains(markers[i].getPosition())) {
-                alert("hello");
+                //alert("hello");
                 markers[i].setMap(map);
             } else {
                 markers[i].setMap(null);

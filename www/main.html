@@ -36,11 +36,14 @@
 <div id="map"></div>
     <div id="count"></div>
     <script>
+        alert("Getting your location....");
         document.addEventListener("deviceready", onDeviceReady, false);
         function onDeviceReady() {
+            alert("Getting your location....");
             if (navigator.geolocation)
             {
                 navigator.geolocation.getCurrentPosition(coinmap, onError, {maximumAge: 300000, timeout:10000, enableHighAccuracy : true});
+                alert("hello");
             }
             else{
             alert("GeoLocation is not available.");}
