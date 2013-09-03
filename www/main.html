@@ -38,7 +38,12 @@
     <script>
         document.addEventListener("deviceready", onDeviceReady, false);
         function onDeviceReady() {
-            navigator.geolocation.getCurrentPosition(coinmap, onError, {maximumAge: 300000, timeout:10000, enableHighAccuracy : true});
+            if (navigator.geolocation)
+            {
+                navigator.geolocation.getCurrentPosition(coinmap, onError, {maximumAge: 300000, timeout:10000, enableHighAccuracy : true});
+            }
+            else{
+            alert("GeoLocation is not available.");}
         };
     </script>
     
